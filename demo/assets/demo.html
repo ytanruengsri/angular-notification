@@ -1,0 +1,13 @@
+<div class="page-header">
+    <h1>Angular Notification</h1>
+</div>
+
+<ynot messages="messages" position="position" interval="4000"></ynot>
+
+<button type="button" class="btn btn-primary" ng-click="changePosition('top-left')">Top Left</button>
+<button type="button" class="btn btn-primary" ng-click="changePosition('top-right')">Top Right</button>
+<button type="button" class="btn btn-primary" ng-click="changePosition('center')">Center</button>
+<button type="button" class="btn btn-primary" ng-click="changePosition('bottom-left')">Bottom Left</button>
+<button type="button" class="btn btn-primary" ng-click="changePosition('bottom-right')">Bottom Right</button>
+<div class="clearfix" style="margin: 10px 0"></div>
+<button type="button" class="btn btn-success" ng-click="notify()">Notify</button>

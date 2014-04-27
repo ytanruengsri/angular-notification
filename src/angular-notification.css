@@ -1,0 +1,103 @@
+.y-notication {
+    position: fixed;
+    display: block;
+    width: 300px;
+}
+
+.y-notification-msg {
+    opacity: 1;
+    margin: 5px 0;
+
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+}
+
+.y-notification-msg.fadeout {
+    opacity: 0;
+}
+
+.y-notification-msg.fadein {
+    opacity: 1;
+}
+
+.y-notification-msg.success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.y-notification-msg.success .y-notification-body {
+
+}
+
+.y-notification-msg.success .y-notification-body .y-notification-title {
+
+}
+
+.y-notification-msg.success .y-notification-body .y-notification-message {
+
+}
+
+.y-notification-msg.error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.y-notification-msg.error .y-notification-body {
+
+}
+
+.y-notification-msg.error .y-notification-body .y-notification-title {
+
+}
+
+.y-notification-msg.error .y-notification-body .y-notification-message {
+
+}
+
+.y-notification-msg.info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+.y-notification-msg.info .y-notification-body {
+
+}
+
+.y-notification-msg.info .y-notification-body .y-notification-title {
+
+}
+
+.y-notification-msg.info .y-notification-body .y-notification-message {
+
+}
+
+.y-notification-msg.warn {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+.y-notification-msg.warn .y-notification-body {
+
+}
+
+.y-notification-msg.warn .y-notification-body .y-notification-title {
+
+}
+
+.y-notification-msg.warn .y-notification-body .y-notification-message {
+
+}
+
+
+
+
