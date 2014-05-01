@@ -34,3 +34,8 @@ section.showcase {
 section.main {
     margin: 20px;
 }
+
+section.view-source {
+    color: #ffffff;
+    margin: 20px;
+}
