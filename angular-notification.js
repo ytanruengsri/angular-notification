@@ -9,7 +9,7 @@
 
 'use strict';
 
-angular.module('yNotificationModule', ['ngAnimate'])
+angular.module('yNotificationModule', ['yNotificationTemplateModule'])
     .constant('ynotConst', {
         'top-left': {
             top: '20px',
