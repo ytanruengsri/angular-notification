@@ -3,7 +3,7 @@ angular-notification
 Angular directive show notification with pure CSS3
 
 ## Demo
-* [Live Demo](https://github.com/ytanruengsri/angular-notification/demo/)
+* [Live Demo](http://ytanruengsri.github.io/angular-notification/)
 
 ## License
 

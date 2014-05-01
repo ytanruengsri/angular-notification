@@ -1,13 +1,23 @@
-<div class="page-header">
-    <h1>Angular Notification</h1>
-</div>
-
 <ynot messages="messages" position="position" interval="4000"></ynot>
 
-<button type="button" class="btn btn-primary" ng-click="changePosition('top-left')">Top Left</button>
-<button type="button" class="btn btn-primary" ng-click="changePosition('top-right')">Top Right</button>
-<button type="button" class="btn btn-primary" ng-click="changePosition('center')">Center</button>
-<button type="button" class="btn btn-primary" ng-click="changePosition('bottom-left')">Bottom Left</button>
-<button type="button" class="btn btn-primary" ng-click="changePosition('bottom-right')">Bottom Right</button>
-<div class="clearfix" style="margin: 10px 0"></div>
-<button type="button" class="btn btn-success" ng-click="notify()">Notify</button>
+<header class="top-nav">
+    <h1>Angular Notification</h1>
+</header>
+<section class="showcase">
+    <h3>
+       Angular directive that makes it very easy to create success - error - warn - info. The notifications can be positioned at the:
+       <code>top - left</code>
+       <code>top - right</code>
+       <code>bottom - left</code>
+       <code>bottom - right</code>
+    </h3>
+    <a href="https://github.com/ytanruengsri/angular-notification" type="button" class="btn btn-success">Code on GitHub</a>
+</section>
+<section class="main">
+    <button type="button" class="btn btn-primary" ng-click="changePosition('top-left')">Top Left</button>
+    <button type="button" class="btn btn-primary" ng-click="changePosition('top-right')">Top Right</button>
+    <button type="button" class="btn btn-primary" ng-click="changePosition('bottom-left')">Bottom Left</button>
+    <button type="button" class="btn btn-primary" ng-click="changePosition('bottom-right')">Bottom Right</button>
+    <div class="clearfix" style="margin: 10px 0"></div>
+    <button type="button" class="btn btn-success" ng-click="notify()">Notify</button>
+</section>
