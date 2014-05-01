@@ -9,7 +9,7 @@
 
 'use strict';
 
-angular.module('yNotificationModule', [])
+angular.module('yNotificationModule', ['ngAnimate'])
     .constant('ynotConst', {
         'top-left': {
             top: '20px',
@@ -28,59 +28,64 @@ angular.module('yNotificationModule', [])
             right: '20px'
         }
     })
-    .animation('.y-notification-msg', function() {
-        return {
-            removeClass: function(ele, className, done) {
-                if (className === 'ng-hide') {
-                    console.log('showing the element');
-                } else { done(); }
-            },
-            addClass: function(ele, className, done) {
-                if (className === 'ng-hide') {
-                    console.log('hiding the element');
-                } else { done(); }
-            }
-        }
-    })
     .directive('ynot', ['$compile', '$document', '$timeout', 'ynotConst',
         function($compile, $document, $timeout, ynotConst) {
             return {
                 restrict: 'E',
                 replace: true,
                 scope: {
+                    zIndex: '=',
                     position: '=',
                     messages: '=',
-                    interval: '='
+                    interval: '=',
+                    selfDestroyDuration: '='
                 },
                 templateUrl: 'template/angular-notification-template.html',
                 link: function(scope, elem) {
+                    elem.css('zIndex', scope.zIndex);
+
                     var templateElement = '<ynot-block></ynot-block>';
 
                     scope.$watchCollection('messages', function() {
                         if (angular.isDefined(scope.messages) && scope.messages.length > 0) {
-                            // var clientWidth = $document[0].body.clientWidth;
-                            // var clientHeight =$document[0].body.clientHeight;
-
                             elem.css(ynotConst[scope.position]);
-
-                            angular.forEach(scope.messages, function (message) {
-                                if (angular.isDefined(message)) {
-                                    var localScope = scope.$new(false);
-                                    localScope.level = message.level;
-                                    localScope.message = message.message;
-
-                                    var el = $compile(templateElement)(localScope);
-                                    elem.append(el);
-
-                                    $timeout(function() {
-                                        localScope.$destroy();
-                                    }, scope.interval);
-                                }
+                            showMessages(function() {
+                                scope.messages = [];
                             });
-
-                            scope.messages = [];
                         }
                     });
+
+                    function showMessages(callback) {
+                        var idx = 0,
+                            interval = setInterval(function() {
+                                var message = scope.messages[idx++];
+                                if (idx === scope.messages.length) {
+                                    clearInterval(interval);
+                                    callback();
+                                }
+
+                                createMessage(message);
+                            }, scope.interval);
+                    }
+
+                    function createMessage(message) {
+                        if (angular.isDefined(message)) {
+                            var localScope = scope.$new(false);
+                            localScope.level = message.level;
+                            localScope.message = message.message;
+
+                            var el = $compile(templateElement)(localScope);
+                            elem.append(el);
+
+                            $timeout(function() {
+                                localScope.destroyed = true;
+
+                                $timeout(function() {
+                                    localScope.$destroy();
+                                }, 700);
+                            }, scope.selfDestroyDuration);
+                        }
+                    }
                 }
             };
         }])
@@ -91,8 +96,15 @@ angular.module('yNotificationModule', [])
                 replace: true,
                 templateUrl: 'template/angular-notification-block-template.html',
                 link: function(scope, elem) {
+                    scope.destroyed = false;
                     scope.$on('$destroy', function() {
                         elem.remove();
+                    });
+
+                    scope.$watch('destroyed', function(newValue) {
+                        if (newValue) {
+                            elem.addClass('fadeout');
+                        }
                     });
                 }
             };
