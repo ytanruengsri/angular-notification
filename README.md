@@ -25,6 +25,13 @@ And
 * `interval` Delay time in ms for notification. (Default value: `300`)
 * `selfDestroyDuration` Time in ms to destroy the notification after creation. (Default value: `2000`)
 
+## Example
+**JS**
+<pre>angular.module("demo", ["yNotificationModule"])</pre>
+
+**HTML**
+<pre><ynot messages="exampleMessages" position="examplePosition" z-index="9999" interval="300" self-destroy-duration="2000"></ynot></pre>
+
 ## License
 
 Copyright (c) 2014 [Yuthasak Tanruengsri](mailto:yuthasak.tanruengsri@googlemail.com)
