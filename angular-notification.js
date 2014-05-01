@@ -40,7 +40,7 @@ angular.module('yNotificationModule', ['ngAnimate'])
                     interval: '=',
                     selfDestroyDuration: '='
                 },
-                templateUrl: 'template/angular-notification-template.html',
+                templateUrl: '../template/angular-notification-template.html',
                 link: function(scope, elem) {
                     elem.css('zIndex', scope.zIndex);
 
@@ -94,7 +94,7 @@ angular.module('yNotificationModule', ['ngAnimate'])
             return {
                 restrict: 'E',
                 replace: true,
-                templateUrl: 'template/angular-notification-block-template.html',
+                templateUrl: '../template/angular-notification-block-template.html',
                 link: function(scope, elem) {
                     scope.destroyed = false;
                     scope.$on('$destroy', function() {

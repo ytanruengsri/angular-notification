@@ -1,0 +1,25 @@
+{
+    "author": "Yuthasak Tanruengsri",
+    "name": "angular-notification",
+    "homepage": "https://github.com/ytanruengsri/angular-notification",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ytanruengsri/angular-notification.git"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://raw.githubusercontent.com/ytanruengsri/angular-notification/master/LICENSE"
+        }
+    ],
+    "engines": {
+        "node": ">= 0.8.4"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "grunt": "~0.4.0",
+        "grunt-contrib-clean": "~0.4.0",
+        "grunt-contrib-copy": "~0.4.0",
+        "grunt-html2js": "~0.1.0"
+    }
+}
