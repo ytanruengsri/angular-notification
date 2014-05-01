@@ -13,8 +13,9 @@ angular.module('yNotificationModule', ['yNotificationTemplateModule'])
     .constant('ynotConst', {
         'defaultZIndex': 9999,
         'defaultPosition': 'top-right',
-        'defaultInterval': '300',
-        'defaultSelfDestroyDuration': '200',
+        'defaultInterval': 300,
+        'defaultSelfDestroyDuration': 2000,
+        'defaultDestroyAnimationDelay': 700,
         'top-left': {
             top: '20px',
             left: '20px'
@@ -46,13 +47,18 @@ angular.module('yNotificationModule', ['yNotificationTemplateModule'])
                 },
                 templateUrl: '../template/angular-notification-template.html',
                 link: function(scope, elem) {
-                    elem.css('zIndex', scope.zIndex | ynotConst.defaultZIndex);
+                    var zIndex = angular.isDefined(scope.zIndex) ? scope.zIndex : ynotConst.defaultZIndex;
+                    var position = angular.isDefined(scope.position) ? scope.position : ynotConst.defaultPosition;
+                    var interval = angular.isDefined(scope.interval) ? scope.interval : ynotConst.defaultInterval;
+                    var destroyDuration = angular.isDefined(scope.selfDestroyDuration) ? scope.selfDestroyDuration : ynotConst.defaultDestroyAnimationDelay;
+
+                    elem.css('zIndex', zIndex);
 
                     var templateElement = '<ynot-block></ynot-block>';
 
                     scope.$watchCollection('messages', function() {
                         if (angular.isDefined(scope.messages) && scope.messages.length > 0) {
-                            elem.css(ynotConst[scope.position | ynotConst.defaultPosition]);
+                            elem.css(ynotConst[position]);
                             showMessages(function() {
                                 scope.messages = [];
                             });
@@ -61,15 +67,15 @@ angular.module('yNotificationModule', ['yNotificationTemplateModule'])
 
                     function showMessages(callback) {
                         var idx = 0,
-                            interval = setInterval(function() {
+                            intervalFn = setInterval(function() {
                                 var message = scope.messages[idx++];
                                 if (idx === scope.messages.length) {
-                                    clearInterval(interval);
+                                    clearInterval(intervalFn);
                                     callback();
                                 }
 
                                 createMessage(message);
-                            }, scope.interval | ynotConst.defaultInterval);
+                            }, interval);
                     }
 
                     function createMessage(message) {
@@ -86,8 +92,8 @@ angular.module('yNotificationModule', ['yNotificationTemplateModule'])
 
                                 $timeout(function() {
                                     localScope.$destroy();
-                                }, 700);
-                            }, scope.selfDestroyDuration | ynotConst.selfDestroyDuration);
+                                }, ynotConst.defaultDestroyAnimationDelay);
+                            }, destroyDuration);
                         }
                     }
                 }
