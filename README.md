@@ -1,6 +1,6 @@
 angular-notification
 ====================
-Angular directive show notification with pure CSS3
+Angular directive for showing notifications with pure CSS3
 
 ## Demo
 * [Live Demo](http://ytanruengsri.github.io/angular-notification/)
