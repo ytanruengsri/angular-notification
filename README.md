@@ -30,7 +30,7 @@ And
 <pre>angular.module("demo", ["yNotificationModule"])</pre>
 
 **HTML**
-<pre><ynot messages="exampleMessages" position="examplePosition" z-index="9999" interval="300" self-destroy-duration="2000"></ynot></pre>
+<pre>&lt;ynot messages="exampleMessages" position="examplePosition" z-index="9999" interval="300" self-destroy-duration="2000">&lt;/ynot></pre>
 
 ## License
 
