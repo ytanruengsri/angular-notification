@@ -52,7 +52,7 @@ angular.module('yNotificationModule', [])
                     messages: '=',
                     interval: '='
                 },
-                templateUrl: '../template/angular-notification-template.html',
+                templateUrl: 'template/angular-notification-template.html',
                 link: function(scope, elem) {
                     var templateElement = '<ynot-block></ynot-block>';
 
@@ -89,7 +89,7 @@ angular.module('yNotificationModule', [])
             return {
                 restrict: 'E',
                 replace: true,
-                templateUrl: '../template/angular-notification-block-template.html',
+                templateUrl: 'template/angular-notification-block-template.html',
                 link: function(scope, elem) {
                     scope.$on('$destroy', function() {
                         elem.remove();
