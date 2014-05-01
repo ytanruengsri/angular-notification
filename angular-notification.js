@@ -11,6 +11,10 @@
 
 angular.module('yNotificationModule', ['yNotificationTemplateModule'])
     .constant('ynotConst', {
+        'defaultZIndex': 9999,
+        'defaultPosition': 'top-right',
+        'defaultInterval': '300',
+        'defaultSelfDestroyDuration': '200',
         'top-left': {
             top: '20px',
             left: '20px'
@@ -42,13 +46,13 @@ angular.module('yNotificationModule', ['yNotificationTemplateModule'])
                 },
                 templateUrl: '../template/angular-notification-template.html',
                 link: function(scope, elem) {
-                    elem.css('zIndex', scope.zIndex);
+                    elem.css('zIndex', scope.zIndex | ynotConst.defaultZIndex);
 
                     var templateElement = '<ynot-block></ynot-block>';
 
                     scope.$watchCollection('messages', function() {
                         if (angular.isDefined(scope.messages) && scope.messages.length > 0) {
-                            elem.css(ynotConst[scope.position]);
+                            elem.css(ynotConst[scope.position | ynotConst.defaultPosition]);
                             showMessages(function() {
                                 scope.messages = [];
                             });
@@ -65,7 +69,7 @@ angular.module('yNotificationModule', ['yNotificationTemplateModule'])
                                 }
 
                                 createMessage(message);
-                            }, scope.interval);
+                            }, scope.interval | ynotConst.defaultInterval);
                     }
 
                     function createMessage(message) {
@@ -83,7 +87,7 @@ angular.module('yNotificationModule', ['yNotificationTemplateModule'])
                                 $timeout(function() {
                                     localScope.$destroy();
                                 }, 700);
-                            }, scope.selfDestroyDuration);
+                            }, scope.selfDestroyDuration | ynotConst.selfDestroyDuration);
                         }
                     }
                 }
