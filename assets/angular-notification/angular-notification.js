@@ -9,7 +9,7 @@
 
 'use strict';
 
-angular.module('yNotificationModule', ['ngAnimate', 'yNotificationTemplateModule'])
+angular.module('tellMeModule', ['ngAnimate', 'tellMeTemplate'])
     .constant('$tellMeConstant', {
         'defaultZIndex': 9999,
         'defaultPosition': 'top-right',
@@ -36,13 +36,11 @@ angular.module('yNotificationModule', ['ngAnimate', 'yNotificationTemplateModule
                     'created': Date.now()
                 };
 
-                var timeout = $timeout(function() {
+                messages.push(tellMeNow);
+
+                $timeout(function() {
                     messages.splice(messages.indexOf(tellMeNow), 1);
                 }, $tellMeConstant.defaultSelfDestroyDuration);
-
-                angular.extend(tellMeNow, {timer: timeout});
-
-                messages.push(tellMeNow);
 
                 return tellMeNow;
             }

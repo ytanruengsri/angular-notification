@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("demo", ["ngRoute", "yNotificationModule"])
+angular.module("demo", ["ngRoute", "tellMeModule"])
     .config(function($routeProvider) {
         $routeProvider
             .when('/', {
@@ -33,6 +33,15 @@ angular.module("demo", ["ngRoute", "yNotificationModule"])
                 level: 'success',
                 title: 'success title',
                 message: 'Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'
+            });
+        };
+
+        $scope.tellMeAtCenter = function() {
+            $scope.pos = 'center';
+            $tellMe.now({
+                level: 'success',
+                title: 'success title',
+                message: 'Upload successful'
             });
         };
 

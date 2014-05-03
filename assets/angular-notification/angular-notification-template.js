@@ -1,4 +1,4 @@
-angular.module('yNotificationTemplateModule', ['../template/angular-notification-template.html']);
+angular.module('tellMeTemplate', ['../template/angular-notification-template.html']);
 
 angular.module("../template/angular-notification-template.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("../template/angular-notification-template.html",

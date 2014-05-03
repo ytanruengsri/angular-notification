@@ -1,4 +1,4 @@
-<ynot messages="messages" position="position"></ynot>
+<tell-me position="pos"></tell-me>
 
 <header class="top-nav">
     <h1>Angular Notification</h1>
@@ -9,7 +9,6 @@
        <code>top - left</code>
        <code>top - center</code>
        <code>top - right</code>
-       <code>center</code>
        <code>bottom - left</code>
        <code>bottom - center</code>
        <code>bottom - right</code>
@@ -27,7 +26,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-4">
             <button type="button" class="btn btn-default fix-width" ng-disabled="true">Center Left</button>
-            <button type="button" class="btn btn-success fix-width" ng-disabled>Center</button>
+            <button type="button" class="btn btn-success fix-width" ng-click="tellMeAtCenter()">Center</button>
             <button type="button" class="btn btn-default fix-width" ng-disabled="true">Center Right</button>
         </div>
     </div>

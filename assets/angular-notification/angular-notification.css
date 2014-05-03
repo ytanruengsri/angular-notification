@@ -20,6 +20,12 @@
     top: 20px;
 }
 
+.y-notication.center {
+    left: 50%;
+    margin-left: -150px;
+    top: 50%;
+}
+
 .y-notication.bottom-left {
     left: 20px;
     bottom: 20px;
