@@ -3,7 +3,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-html2js');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.registerTask('compress', ['build', 'concat:js', 'uglify:js']);
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-css');
+    grunt.registerTask('compress', ['build', 'concat:js', 'uglify:js', 'cssmin']);
     grunt.registerTask('build', ['html2js']);
 
     // Project configuration.
@@ -12,6 +14,12 @@ module.exports = function (grunt) {
         src: {
             js: ['*.js'],
             html: ['template/*.html']
+        },
+        cssmin: {
+            css:{
+                src: '*.css',
+                dest: 'angular-notification.min.css'
+            }
         },
         concat: {
             js : {

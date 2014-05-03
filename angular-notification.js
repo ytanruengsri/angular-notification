@@ -9,113 +9,70 @@
 
 'use strict';
 
-angular.module('yNotificationModule', ['yNotificationTemplateModule'])
-    .constant('ynotConst', {
+angular.module('yNotificationModule', ['ngAnimate', 'yNotificationTemplateModule'])
+    .constant('$tellMeConstant', {
         'defaultZIndex': 9999,
         'defaultPosition': 'top-right',
-        'defaultInterval': 300,
-        'defaultSelfDestroyDuration': 2000,
-        'defaultDestroyAnimationDelay': 700,
-        'top-left': {
-            top: '20px',
-            left: '20px'
-        },
-        'top-right': {
-            top: '20px',
-            right: '20px'
-        },
-        'bottom-left': {
-            bottom: '20px',
-            left: '20px'
-        },
-        'bottom-right': {
-            bottom: '20px',
-            right: '20px'
-        }
+        'defaultSelfDestroyDuration': 3500
     })
-    .directive('ynot', ['$compile', '$document', '$timeout', 'ynotConst',
-        function($compile, $document, $timeout, ynotConst) {
+    .factory('$tellMe', ['$timeout', '$tellMeConstant', function ($timeout, $tellMeConstant) {
+        var messages = [];
+
+        return {
+            /* ============ GETTER FN ============*/
+            getMessages: function() {
+                return messages;
+            },
+
+            /* ============== NOTIFICATION FN ==============*/
+            now: function(obj) {
+                return this.createNotification(obj.level, obj.title, obj.message);
+            },
+            createNotification: function(level, title, message) {
+                var tellMeNow = {
+                    'level': level,
+                    'title': title,
+                    'message': message,
+                    'created': Date.now()
+                };
+
+                var timeout = $timeout(function() {
+                    messages.splice(messages.indexOf(tellMeNow), 1);
+                }, $tellMeConstant.defaultSelfDestroyDuration);
+
+                angular.extend(tellMeNow, {timer: timeout});
+
+                messages.push(tellMeNow);
+
+                return tellMeNow;
+            }
+        };
+    }])
+    .directive('tellMe', ['$timeout', '$tellMeConstant', '$tellMe',
+        function($timeout, $tellMeConstant, $tellMe) {
             return {
                 restrict: 'E',
                 replace: true,
                 scope: {
                     zIndex: '=',
-                    position: '=',
-                    messages: '=',
-                    interval: '=',
-                    selfDestroyDuration: '='
+                    position: '='
                 },
                 templateUrl: '../template/angular-notification-template.html',
                 link: function(scope, elem) {
-                    var zIndex = angular.isDefined(scope.zIndex) ? scope.zIndex : ynotConst.defaultZIndex;
-                    var position = angular.isDefined(scope.position) ? scope.position : ynotConst.defaultPosition;
-                    var interval = angular.isDefined(scope.interval) ? scope.interval : ynotConst.defaultInterval;
-                    var destroyDuration = angular.isDefined(scope.selfDestroyDuration) ? scope.selfDestroyDuration : ynotConst.defaultDestroyAnimationDelay;
-
+                    /* ============== Config ==============*/
+                    var zIndex = angular.isDefined(scope.zIndex) ? scope.zIndex : $tellMeConstant.defaultZIndex;
                     elem.css('zIndex', zIndex);
+                },
+                controller: function($scope) {
+                    $scope.messages = $tellMe.getMessages();
 
-                    var templateElement = '<ynot-block></ynot-block>';
-
-                    scope.$watchCollection('messages', function() {
-                        if (angular.isDefined(scope.messages) && scope.messages.length > 0) {
-                            elem.css(ynotConst[position]);
-                            showMessages(function() {
-                                scope.messages = [];
-                            });
-                        }
+                    $scope.$on('clearTellMe', function() {
+                        $scope.messages.splice(0, $scope.messages.length)
                     });
 
-                    function showMessages(callback) {
-                        var idx = 0,
-                            intervalFn = setInterval(function() {
-                                var message = scope.messages[idx++];
-                                if (idx === scope.messages.length) {
-                                    clearInterval(intervalFn);
-                                    callback();
-                                }
-
-                                createMessage(message);
-                            }, interval);
-                    }
-
-                    function createMessage(message) {
-                        if (angular.isDefined(message)) {
-                            var localScope = scope.$new(false);
-                            localScope.level = message.level;
-                            localScope.message = message.message;
-
-                            var el = $compile(templateElement)(localScope);
-                            elem.append(el);
-
-                            $timeout(function() {
-                                localScope.destroyed = true;
-
-                                $timeout(function() {
-                                    localScope.$destroy();
-                                }, ynotConst.defaultDestroyAnimationDelay);
-                            }, destroyDuration);
-                        }
-                    }
-                }
-            };
-        }])
-    .directive('ynotBlock', [
-        function() {
-            return {
-                restrict: 'E',
-                replace: true,
-                templateUrl: '../template/angular-notification-block-template.html',
-                link: function(scope, elem) {
-                    scope.destroyed = false;
-                    scope.$on('$destroy', function() {
-                        elem.remove();
-                    });
-
-                    scope.$watch('destroyed', function(newValue) {
-                        if (newValue) {
-                            elem.addClass('fadeout');
-                        }
-                    });
+                    $scope.hideMessage = function(msg) {
+                        $scope.messages.splice($scope.messages.indexOf(msg), 1);
+                    };
                 }
             };
         }]);

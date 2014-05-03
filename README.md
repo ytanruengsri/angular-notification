@@ -8,13 +8,14 @@ Angular directive for showing notifications with pure CSS3
 ## Getting Started
 To get started you can simply clone the `angular-notification` repository and include following files:
 
-Minified Version: **angular-notification.min.js**
+Minified Version: **angular-notification.min.js** OR
 
 Uncompressed Version: **angular-notification-template.js** and **angular-notification.js**
 
 And
+Minified Version: **angular-notification.min.css** OR
 
-**angular-notification.css**
+Uncompressed Version: **angular-notification.css**
 
 ## Usages
 **Attributes**

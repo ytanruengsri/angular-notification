@@ -1,1 +1,10 @@
-<div class="y-notication {{position}}"></div>
+<div class="y-notication {{position}}">
+    <div ng-repeat="msg in messages" ng-click="hideMessage(msg)">
+         <div class="y-notification-msg {{msg.level}}">
+             <div class="y-notification-body" style="padding: 10px 20px;">
+                 <div class="y-notification-title">{{msg.title}}</div>
+                 <div class="y-notification-message">{{msg.message}}</div>
+             </div>
+        </div>
+    </div>
+</div>
