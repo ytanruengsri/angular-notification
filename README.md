@@ -20,7 +20,7 @@ Uncompressed Version: **angular-notification.css**
 ## Usages
 **Attributes**
 * `zIndex` Specifies the stack order of an element. (Default value: `9999`)
-* `position` Specified the notification position `top-left`, `top-right`, `bottom-left`, `bottom-right` (Default value: `top-right` )
+* `position` Specified the notification position `top-left`, `top-center`, `top-right`,, `center` `bottom-left`, `bottom-center`, `bottom-right` (Default value: `top-right` )
 
 ## Example
 **JS**
