@@ -21,17 +21,13 @@ Uncompressed Version: **angular-notification.css**
 **Attributes**
 * `zIndex` Specifies the stack order of an element. (Default value: `9999`)
 * `position` Specified the notification position `top-left`, `top-right`, `bottom-left`, `bottom-right` (Default value: `top-right` )
-* `messages` Required attribute. Array of messages with the following format
-    <pre>{level: 'info|success|error|warn', message: 'test message'}</pre>
-* `interval` Delay time in ms for notification. (Default value: `300`)
-* `selfDestroyDuration` Time in ms to destroy the notification after creation. (Default value: `2000`)
 
 ## Example
 **JS**
-<pre>angular.module("demo", ["yNotificationModule"])</pre>
+<pre>angular.module("demo", ["tellMeTemplate"])</pre>
 
 **HTML**
-<pre>&lt;ynot messages="exampleMessages" position="examplePosition" z-index="9999" interval="300" self-destroy-duration="2000">&lt;/ynot></pre>
+<pre>&lt;tell-me position="examplePosition" z-index="9999">&lt;/tell-me></pre>
 
 ## License
 
