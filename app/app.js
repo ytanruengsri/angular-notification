@@ -9,31 +9,34 @@ angular.module("demo", ["ngRoute", "yNotificationModule"])
             })
             .otherwise({redirectTo: '/'});
     })
-    .controller("AngularNotificationDemoController", function($scope) {
-        $scope.position = 'top-right';
-        $scope.messages = [];
+    .controller("AngularNotificationDemoController", ['$scope', '$tellMe', function($scope, $tellMe) {
+        $scope.pos = 'top-right';
 
-        $scope.changePosition = function(position) {
-            console.log('change position to ' + position);
-            $scope.position = position;
+        $scope.tellMe = function(position) {
+            $scope.pos = position;
+            $tellMe.now({
+                level: 'info',
+                title: 'info title',
+                message: 'some info message'
+            });
+            $tellMe.now({
+                level: 'error',
+                title: 'error title',
+                message: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
+            });
+            $tellMe.now({
+                level: 'warn',
+                title: 'warning title',
+                message: 'some warning message'
+            });
+            $tellMe.now({
+                level: 'success',
+                title: 'success title',
+                message: 'Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'
+            });
         };
 
-        $scope.notify = function() {
-            $scope.messages.push({
-               level: 'info',
-               message: 'some info message'
-            });
-            $scope.messages.push({
-               level: 'error',
-               message: 'some error message'
-            });
-            $scope.messages.push({
-               level: 'warn',
-               message: 'some warning message'
-            });
-            $scope.messages.push({
-               level: 'success',
-               message: 'some success message'
-            });
-        };
-    });
+        $scope.clearMessages = function() {
+            $scope.$broadcast('clearTellMe');
+        }
+    }]);

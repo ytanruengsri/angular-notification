@@ -1,4 +1,4 @@
-<ynot messages="messages" position="position"></ynot>
+<tell-me position="pos"></tell-me>
 
 <header class="top-nav">
     <h1>Angular Notification</h1>
@@ -7,18 +7,39 @@
     <h3>
        Angular directive that makes it very easy to create success - error - warn - info. The notifications can be positioned at the:
        <code>top - left</code>
+       <code>top - center</code>
        <code>top - right</code>
+       <code>center</code>
        <code>bottom - left</code>
+       <code>bottom - center</code>
        <code>bottom - right</code>
     </h3>
     <a href="https://github.com/ytanruengsri/angular-notification" type="button" class="btn btn-success">Code on GitHub</a>
 </section>
 <section class="main">
-    <button type="button" class="btn btn-primary" ng-click="changePosition('top-left')">Top Left</button>
-    <button type="button" class="btn btn-primary" ng-click="changePosition('top-right')">Top Right</button>
-    <button type="button" class="btn btn-primary" ng-click="changePosition('bottom-left')">Bottom Left</button>
-    <button type="button" class="btn btn-primary" ng-click="changePosition('bottom-right')">Bottom Right</button>
-    <div class="clearfix" style="margin: 10px 0"></div>
-    <button type="button" class="btn btn-success" ng-click="notify()">Notify</button>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-4">
+            <button type="button" class="btn btn-primary fix-width" ng-click="tellMe('top-left')">Top Left</button>
+            <button type="button" class="btn btn-primary fix-width" ng-click="tellMe('top-center')">Top Center</button>
+            <button type="button" class="btn btn-primary fix-width" ng-click="tellMe('top-right')">Top Right</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-4">
+            <button type="button" class="btn btn-default fix-width" ng-disabled="true">Center Left</button>
+            <button type="button" class="btn btn-success fix-width" ng-disabled>Center</button>
+            <button type="button" class="btn btn-default fix-width" ng-disabled="true">Center Right</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-4">
+            <button type="button" class="btn btn-primary fix-width" ng-click="tellMe('bottom-left')">Bottom Left</button>
+            <button type="button" class="btn btn-primary fix-width" ng-click="tellMe('bottom-center')">Bottom Center</button>
+            <button type="button" class="btn btn-primary fix-width" ng-click="tellMe('bottom-right')">Bottom Right</button>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <button type="button" class="btn btn-danger fix-width" ng-click="clearMessages()">Clear</button>
 </section>
 <section class="view-source" view-source="app" highlight-lines="{markup: '1-2'}"></section>

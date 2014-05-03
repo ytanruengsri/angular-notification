@@ -4,10 +4,43 @@
     width: 300px;
 }
 
+.y-notication.top-left {
+    left: 20px;
+    top: 20px;
+}
+
+.y-notication.top-center {
+    left: 50%;
+    margin-left: -150px;
+    top: 20px;
+}
+
+.y-notication.top-right {
+    right: 20px;
+    top: 20px;
+}
+
+.y-notication.bottom-left {
+    left: 20px;
+    bottom: 20px;
+}
+
+.y-notication.bottom-center {
+    left: 50%;
+    margin-left: -150px;
+    bottom: 20px;
+}
+
+.y-notication.bottom-right {
+    right: 20px;
+    bottom: 20px;
+}
+
 .y-notification-msg {
     opacity: 0;
     margin: 5px 0;
     padding: 8px 10px;
+
 
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -18,14 +51,50 @@
     animation:         fade-in .5s forwards ease-in-out;
 }
 
-.y-notification-msg.success.fadeout,
-.y-notification-msg.info.fadeout,
-.y-notification-msg.warn.fadeout,
-.y-notification-msg.error.fadeout
-{
-    -webkit-animation: fade-out 1s forwards ease-out;
-    -moz-animation:    fade-out 1s forwards ease-out;
-    animation:         fade-out 1s forwards ease-out;
+.y-notification-msg:hover {
+    cursor: pointer;
+}
+
+.y-notification-msg.success {
+    color: #156A16;
+    background-color: #65AB4B;
+    border-color: #d6e9c6;
+}
+
+.y-notification-msg.error {
+    color: #811614;
+    background-color: #B74343;
+    border-color: #811614;
+}
+
+.y-notification-msg.info {
+    color: #0F5172;
+    background-color: #5394B5;
+    border-color: #166186;
+}
+
+.y-notification-msg.warn {
+    color: #8a6d3b;
+    background-color: #E6D78A;
+    border-color: #faebcc;
+}
+
+.y-notification-title {
+    font-weight: bold;
+}
+
+.y-notication > div.ng-leave {
+    -webkit-animation: fade-out .5s forwards ease-in-out;
+    -moz-animation:    fade-out .5s forwards ease-in-out;
+    animation:         fade-out .5s forwards ease-in-out;
+}
+
+.y-notication > div.ng-leave {
+    opacity: 1;
+}
+
+.y-notication > div.ng-leave.ng-leave-active {
+    opacity: 0;
 }
 
 @-webkit-keyframes fade-in {
@@ -62,27 +131,4 @@
     100% { opacity: 0; }
 }
 
-.y-notification-msg.success {
-    color: #3c763d;
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-}
-
-.y-notification-msg.error {
-    color: #a94442;
-    background-color: #f2dede;
-    border-color: #ebccd1;
-}
-
-.y-notification-msg.info {
-    color: #31708f;
-    background-color: #d9edf7;
-    border-color: #bce8f1;
-}
-
-.y-notification-msg.warn {
-    color: #8a6d3b;
-    background-color: #fcf8e3;
-    border-color: #faebcc;
-}
 

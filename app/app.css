@@ -35,7 +35,15 @@ section.main {
     margin: 20px;
 }
 
+section.main > div.row {
+    margin-bottom: 10px;
+}
+
+.fix-width {
+    width: 120px;
+}
+
 section.view-source {
     color: #ffffff;
-    margin: 20px;
+    margin: 50px 20px 0 20px;
 }
