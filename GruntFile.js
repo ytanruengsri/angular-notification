@@ -17,7 +17,7 @@ module.exports = function (grunt) {
         },
         cssmin: {
             css:{
-                src: '*.css',
+                src: ['*.css', '!*.min.css'],
                 dest: 'angular-notification.min.css'
             }
         },
@@ -43,7 +43,7 @@ module.exports = function (grunt) {
                 },
                 src: ['<%= src.html %>'],
                 dest: 'angular-notification-template.js',
-                module: 'yNotificationTemplateModule'
+                module: 'tellMeTemplate'
             }
         }
     });

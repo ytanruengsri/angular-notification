@@ -9,7 +9,7 @@
 
 'use strict';
 
-angular.module('yNotificationModule', ['ngAnimate', 'yNotificationTemplateModule'])
+angular.module('tellMeModule', ['ngAnimate', 'tellMeTemplate'])
     .constant('$tellMeConstant', {
         'defaultZIndex': 9999,
         'defaultPosition': 'top-right',
